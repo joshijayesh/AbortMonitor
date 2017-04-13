@@ -11,6 +11,9 @@ public class SerialMonitorWithAbort extends ReentrantMonitor {
         super(o);
     }
 
+    /**
+     * Basis: https://gist.github.com/neuro-sys/3798357
+     */
     @Override
     protected void deepCopy() {
         try {
