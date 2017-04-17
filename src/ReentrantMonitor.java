@@ -23,8 +23,8 @@ public abstract class ReentrantMonitor implements MonitorWithAbort {
     protected abstract void deepCopy();
 
     public void lock() {
-        deepCopy();
         this.lock.lock();
+        deepCopy();
     }
 
     public void unlock() {
