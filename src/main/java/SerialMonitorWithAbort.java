@@ -1,11 +1,10 @@
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * Created by jayesh on 4/13/17.
  */
-public class SerialMonitorWithAbort extends ReentrantMonitor {
+public class SerialMonitorWithAbort extends ReentrantMonitorWithAbort {
 
     SerialMonitorWithAbort(Object o) {
         super(o);
@@ -30,20 +29,5 @@ public class SerialMonitorWithAbort extends ReentrantMonitor {
             e.printStackTrace();
             System.exit(1);
         }
-    }
-
-    public static void main(String args[]) {
-        ArrayList<Integer> testList = new ArrayList();
-        SerialMonitorWithAbort mMonitor = new SerialMonitorWithAbort(testList);
-        mMonitor.lock();
-        testList.add(0);
-        mMonitor.debug();
-        mMonitor.unlock();
-        mMonitor.debug();
-        mMonitor.lock();
-        testList.add(1);
-        mMonitor.debug();
-        mMonitor.abort();
-        mMonitor.debug();
     }
 }

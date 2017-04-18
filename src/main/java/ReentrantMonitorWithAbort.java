@@ -5,13 +5,13 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by jayesh on 4/13/17.
  */
-public abstract class ReentrantMonitor implements MonitorWithAbort {
+public abstract class ReentrantMonitorWithAbort implements MonitorWithAbort {
     protected ReentrantLock lock;
     protected Condition monitorCondition;
     protected Object object;
     protected Object clone;
 
-    ReentrantMonitor(Object o) {
+    ReentrantMonitorWithAbort(Object o) {
         this.lock = new ReentrantLock(true);
         this.monitorCondition = this.lock.newCondition();
         this.object = o;
