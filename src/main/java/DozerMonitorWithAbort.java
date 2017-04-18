@@ -10,6 +10,9 @@ public class DozerMonitorWithAbort extends ReentrantMonitorWithAbort {
         super(0);
     }
 
+    /**
+     * TODO: Fix this problem ~ gives a ClassNotFound Exception
+     */
     @Override
     protected void deepCopy() {
         Mapper mapper = new DozerBeanMapper();

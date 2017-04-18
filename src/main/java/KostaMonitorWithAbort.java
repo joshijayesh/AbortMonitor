@@ -8,6 +8,9 @@ public class KostaMonitorWithAbort extends ReentrantMonitorWithAbort {
         super(o);
     }
 
+    /**
+     * https://github.com/kostaskougios/cloning
+     */
     @Override
     protected void deepCopy() {
         Cloner cloner = new Cloner();
