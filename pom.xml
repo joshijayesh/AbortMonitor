@@ -10,6 +10,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer-parent</artifactId>
             <version>5.4.0</version>

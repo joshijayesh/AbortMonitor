@@ -10,4 +10,6 @@ public interface MonitorWithAbort {
     public void await() throws InterruptedException;
     public void signal();
     public void signalAll();
+    public boolean isLocked();
+    public void debug();
 }
