@@ -18,8 +18,7 @@ public class TestFunctionalityMonitorWithAbort {
     };
 
     @Theory
-    public void arrayTest(MonitorWithAbort monitor) {
-        System.out.println(monitor.getClass());
+    public void customerFunctionalityTest(MonitorWithAbort monitor) {
         customer.setId(2);
         customer.setName("Sarah");
 
@@ -37,5 +36,42 @@ public class TestFunctionalityMonitorWithAbort {
         monitor.abort();
         assertTrue("Customer Name Must be Sarah", customer.getName().equals("Sarah"));
         assertTrue("Monitor must be unlocked", !monitor.isLocked());
+    }
+
+    @Theory
+    public void customerThreadTest(final MonitorWithAbort monitor) {
+        customer.setId(2);
+        customer.setName("Sarah");
+
+        Thread t1 = new Thread() {
+            public void run() {
+                monitor.lock();
+                customer.setId(customer.getId() + 3);
+                customer.setName("Hannah");
+                monitor.unlock();
+            }
+        };
+
+        Thread t2 = new Thread() {
+            public void run() {
+                monitor.lock();
+                customer.setId(customer.getId() + 1);
+                customer.setName("Christine");
+                monitor.abort();
+            }
+        };
+
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue("Customer must be Hannah with ID 5",
+                    customer.getId() == 5 && customer.getName().equals("Hannah"));
     }
 }
