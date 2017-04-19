@@ -7,6 +7,11 @@ public class Customer implements Serializable {
     private int id;
     private String name;
 
+    Customer() {
+        this.id = 0;
+        this.name = "";
+    }
+
     Customer(int id, String name) {
         this.id = id;
         this.name = name;

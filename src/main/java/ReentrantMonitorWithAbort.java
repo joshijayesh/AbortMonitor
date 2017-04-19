@@ -1,10 +1,5 @@
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -19,7 +14,6 @@ public abstract class ReentrantMonitorWithAbort implements MonitorWithAbort {
     protected Object clone;
 
     ReentrantMonitorWithAbort(Object o) {
-        Logger.getRootLogger().setLevel(Level.OFF);
         this.lock = new ReentrantLock(true);
         this.monitorCondition = this.lock.newCondition();
         this.object = o;

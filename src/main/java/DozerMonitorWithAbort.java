@@ -7,7 +7,7 @@ import org.dozer.Mapper;
 public class DozerMonitorWithAbort extends ReentrantMonitorWithAbort {
 
     DozerMonitorWithAbort(Object o) {
-        super(0);
+        super(o);
     }
 
     /**
