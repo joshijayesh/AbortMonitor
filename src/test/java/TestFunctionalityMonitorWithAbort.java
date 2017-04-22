@@ -18,7 +18,7 @@ public class TestFunctionalityMonitorWithAbort {
     };
 
     @Theory
-    public void customerFunctionalityTest(MonitorWithAbort monitor) {
+    public void customerFunctionalityTest(ReentrantMonitorWithAbort monitor) {
         customer.setId(2);
         customer.setName("Sarah");
 
@@ -39,7 +39,7 @@ public class TestFunctionalityMonitorWithAbort {
     }
 
     @Theory
-    public void customerThreadTest(final MonitorWithAbort monitor) {
+    public void customerThreadTest(final ReentrantMonitorWithAbort monitor) {
         customer.setId(2);
         customer.setName("Sarah");
 

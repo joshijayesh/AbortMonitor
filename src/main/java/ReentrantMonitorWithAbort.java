@@ -7,9 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by jayesh on 4/13/17.
  */
-public abstract class ReentrantMonitorWithAbort implements MonitorWithAbort {
-    protected ReentrantLock lock;
-    protected Condition monitorCondition;
+public abstract class ReentrantMonitorWithAbort extends ReentrantMonitor {
     protected Object object;
     protected Object clone;
 
@@ -24,11 +22,13 @@ public abstract class ReentrantMonitorWithAbort implements MonitorWithAbort {
      */
     protected abstract void deepCopy();
 
+    @Override
     public void lock() {
         this.lock.lock();
         deepCopy();
     }
 
+    @Override
     public void unlock() {
         this.clone = null;
         this.lock.unlock();
@@ -45,18 +45,6 @@ public abstract class ReentrantMonitorWithAbort implements MonitorWithAbort {
         unlock();
     }
 
-    public void await() throws InterruptedException {
-        this.monitorCondition.await();
-    }
-
-    public void signal() {
-        this.monitorCondition.signal();
-    }
-
-    public void signalAll() {
-        this.monitorCondition.signalAll();
-    }
-
     public void debug() {
         System.out.println("Main Object:\n" + this.object.toString());
         if(this.clone != null) {
@@ -64,9 +52,5 @@ public abstract class ReentrantMonitorWithAbort implements MonitorWithAbort {
         } else {
             System.out.println("Clone is null");
         }
-    }
-
-    public boolean isLocked() {
-        return this.lock.isLocked();
     }
 }
