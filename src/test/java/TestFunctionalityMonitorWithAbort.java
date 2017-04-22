@@ -13,12 +13,14 @@ public class TestFunctionalityMonitorWithAbort {
     static Customer customer = new Customer(2, "Sarah");
     public static @DataPoints ReentrantMonitorWithAbort[] monitors = {
             new SerialMonitorWithAbort(customer),
+            new ApacheSerialMonitorWithAbort(customer),
             new KostaMonitorWithAbort(customer),
             new DozerMonitorWithAbort(customer)
     };
 
     @Theory
     public void customerFunctionalityTest(ReentrantMonitorWithAbort monitor) {
+        //System.out.println(monitor.getClass().toString());
         customer.setId(2);
         customer.setName("Sarah");
 
