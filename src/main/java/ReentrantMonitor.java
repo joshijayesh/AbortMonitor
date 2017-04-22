@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by jayesh on 4/22/17.
  */
-public class ReentrantMonitor implements Monitor {
+public class ReentrantMonitor implements Monitor, Serializable {
     protected ReentrantLock lock;
     protected Condition monitorCondition;
 

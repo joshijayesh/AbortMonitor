@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by jayesh on 4/13/17.
