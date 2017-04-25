@@ -15,6 +15,8 @@ public class DozerMonitorWithAbort extends ReentrantMonitorWithAbort {
      */
     @Override
     protected void deepCopy() {
+
+        @SuppressWarnings("all")
         Mapper mapper = new DozerBeanMapper();
         this.clone = mapper.map(this.object, this.object.getClass());
     }
