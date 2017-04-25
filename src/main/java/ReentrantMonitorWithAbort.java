@@ -1,7 +1,9 @@
 import org.apache.commons.beanutils.BeanUtils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.locks.Condition;
+import java.lang.reflect.Modifier;
+import java.util.Collection;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -36,7 +38,14 @@ public abstract class ReentrantMonitorWithAbort extends ReentrantMonitor {
 
     public void abort() {
         try {
-            BeanUtils.copyProperties(this.object, this.clone);
+            if(this.object instanceof Collection) {
+                ((Collection) this.object).clear();
+                for(Object o: (Collection)this.clone) {
+                    ((Collection) this.object).add(o);
+                }
+            } else {
+                BeanUtils.copyProperties(this.object, this.clone);
+            }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
