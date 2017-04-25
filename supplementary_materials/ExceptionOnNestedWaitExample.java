@@ -28,7 +28,7 @@ public class ExceptionOnNestedWaitExample {
         }
 
         public void safeAcquire(Object a){
-            monitors.get().putIfAbsent(a, -1);
+            monitors.get().putIfAbsent(a, 0);
             monitors.get().put(a, monitors.get().get(a) + 1);
         }
 
